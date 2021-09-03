@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int total;
 array<char, 26> abc;
 array<bool, 26> used;
 vector<pair<char, int>> dict_letters;
@@ -33,7 +34,7 @@ void get_letters() {
         if (used[i.first-'a']) cout<<red;
         cout<<abc[i.first-'a'];
         if (used[i.first-'a']) cout<<nocolor;
-        cout<<"\t"<<i.second<<"\n";
+        cout<<"\t"<<i.second<<"\t"<<(float)(i.second)/total*100<<"%\n";
     }
 }
 
@@ -99,7 +100,7 @@ void help() {
     cout<<R"(get <opción>
     text      Ver el texto
     letters   Ver la tabla de frecuencias de las letras
-    words     Ver la tabla de frecuencias de las palabras de 4 letras o menos
+    words     Ver la tabla de frecuencias de las palabras de 3 letras o menos
     alphabet  Ver el alfabeto sustitutivo
 set <a> <b>   Reemplazar en el texto las letras <a> con la letra <b>
 test          Prueba si el afabeto sustitutivo esta completo
@@ -115,6 +116,7 @@ bool fsort(pair<T, int> p1, pair<T, int> p2) {
 
 int main(int argc, char *argv[]) {
     ios::sync_with_stdio(false);
+    cout<<setprecision(2);
 
     if (argc != 2) {
         cout<<"Es necesario un nombre de archivo para descifrar\n";
@@ -140,10 +142,11 @@ int main(int argc, char *argv[]) {
         if (!isalpha(i)) continue;
         if (isupper(i)) i = tolower(i);
         map_letters[i]++;
+        total++;
     }
 
     for (auto& i : words) {
-        if (i.size() > 4) continue;
+        if (i.size() > 3) continue;
         map_words[i]++;
     }
 
@@ -164,6 +167,7 @@ int main(int argc, char *argv[]) {
         else if (cmd == "get letters") get_letters();
         else if (cmd == "get alphabet") get_alphabet();
         else if (!fset(cmd)) cout<<"No se entendió el comando\n";
+        cout<<flush;
     }
 
     return 0;
