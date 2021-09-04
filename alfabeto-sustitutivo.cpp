@@ -1,14 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int total;
-array<char, 26> abc;
-array<bool, 26> used;
-vector<pair<char, int>> dict_letters;
-vector<pair<string, int>> dict_words;
-string text;
-const char *red= "\033[0;31m", *nocolor = "\033[0m"; //codigos ANSI
+int total; //total de letras
+string text; //todo el archivo en una string
+array<char, 26> abc; //alfabeto sustitutivo
+array<bool, 26> used; //array de bools q recuerda si hicimos operacion en una letra
+vector<pair<char, int>> dict_letters; //letras ordenadas segun su frecuencia
+vector<pair<string, int>> dict_words; //palabras menores de 4 letras ordenadas segun su frecuencia
+const char *red= "\033[0;31m", *nocolor = "\033[0m"; //codigos ANSI de colores
 
+//divide las strings por los espacios
 vector<string> split_space(const string& str) {
     istringstream input(str);
     string tmp;
@@ -17,6 +18,8 @@ vector<string> split_space(const string& str) {
     return ans;
 }
 
+//comprueba que el cmando dado sea de la forma "set <a> <b>"
+//devuelve false si hubo error, sino, true
 bool fset(const string& tmp) {
     auto cmd = split_space(tmp);
     if (cmd.size() != 3) return false;
@@ -28,6 +31,8 @@ bool fset(const string& tmp) {
     used[a] = true;
     return true;
 }
+
+// En las siguientes funciones si una letra fue usada se pinta de rojo
 
 void get_letters() {
     for (auto i : dict_letters) {
@@ -70,30 +75,45 @@ void get_alphabet() {
     }
 }
 
+//comprueba si todo el alfabeto esta usado e indica las letras q se repiten
+//si todo es correcto lo mas probable es q se haya descifrado el texto
+
 void test() {
+    bool b1=true, b2=true;
+
     for (auto i : used) {
         if (!i) {
-            cout<<R"(Faltan letras para completar el alfabeto sustitutivo
-Usa el comando "get alphabet" para más información
-)";
-            return;
+            b1 = false;
+            cout<<"Faltan letras para completar el alfabeto sustitutivo\n";
+            break;
         }
     }
     
     map<char, int> tmp;
     for (auto i : abc) tmp[i]++;
-    if (tmp.size() != 26)  {
-        cout<<"La(s) letra(s) "<<red;
+
+    if (tmp.size() == 25)  {
+        b2 = false;
+        cout<<"La letra "<<red;
 
         for (auto j : tmp) {
             if (j.second>1) cout<<j.first<<" ";
         }
        
-        cout<<nocolor<<"se repiten\nUsa el comando \"get alphabet\" para más información\n";
-        return;
+        cout<<nocolor<<"se repite\n";
+    } else if (tmp.size() < 25)  {
+        b2 = false;
+        cout<<"Las letras "<<red;
+
+        for (auto j : tmp) {
+            if (j.second>1) cout<<j.first<<" ";
+        }
+       
+        cout<<nocolor<<"se repiten\n";
     }
 
-    cout<<"El alfabeto sustitutivo pasó la prueba\n";
+    if (b1 && b2) cout<<"El alfabeto sustitutivo pasó la prueba\n";
+    else cout<<"Usa el comando \"get alphabet\" para más información\n";
 }
 
 void help() {
@@ -109,6 +129,7 @@ exit          Salir del programa
 )";
 }
 
+//ordena pairs de mayor a menor respecto a su segundo miembro
 template<class T>
 bool fsort(pair<T, int> p1, pair<T, int> p2) {
     return p1.second > p2.second;
@@ -133,6 +154,7 @@ int main(int argc, char *argv[]) {
     cout<<"Descifrador de alfabeto sustitutivo\nArchivo abierto: "
         <<argv[1]<<"\nEscriba \"help\" para ver los comandos\n";
     for (char i=0; i<27; ++i) abc[i] = i+'a';
+    // para leer todo el archivo en un string
     text.assign(istreambuf_iterator<char>(input), istreambuf_iterator<char>());
     map<char, int> map_letters;
     auto words = split_space(text);
@@ -167,7 +189,7 @@ int main(int argc, char *argv[]) {
         else if (cmd == "get letters") get_letters();
         else if (cmd == "get alphabet") get_alphabet();
         else if (!fset(cmd)) cout<<"No se entendió el comando\n";
-        cout<<flush;
+        cout<<flush; //se asegura q todo se halla impreso en la consola
     }
 
     return 0;
