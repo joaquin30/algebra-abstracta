@@ -1,3 +1,3 @@
 # Algebra Abstracta UCSP
 
-Pequeños códigos para el curso.
+El archivo `gcd_ext.c` contiene el algorimo extendido de Euclides.
