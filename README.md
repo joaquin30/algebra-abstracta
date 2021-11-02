@@ -1,3 +1,4 @@
-# Algebra Abstracta UCSP
+# Tareas Algebra Abstracta (UCSP)
 
-El archivo `gcd_ext.c` contiene el algorimo extendido de Euclides.
+- `gcd_ext.c`: Algoritmo extendido de Euclides.
+- `prim_root.cpp`: Generador de la raíz primitiva más pequeña
