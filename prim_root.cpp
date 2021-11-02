@@ -40,6 +40,7 @@ ll modexp(ll base, ll exp, ll mod)
 
     return res;
 }
+
 ll primitiveRoot(ll n)
 {
     auto primes = primeFactors(n-1);
