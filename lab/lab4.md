@@ -1,6 +1,4 @@
 % Laboratorio 5
-% Joaquín Pino
-% 2 de noviembre del 2021
 
 1. (Permanente) Dado un número primo p, implementar un programa que permita calcular su raíz primitiva más pequeña (entre 1 y $p - 1$).
 

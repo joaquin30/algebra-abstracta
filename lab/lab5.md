@@ -6,7 +6,7 @@
     que existe). Crear un repositorio en GitHub (con `README.md`).
 
     - Repositorio: <https://github.com/joaquin30/algebra-abstracta>.
-    - Archivo: `inverse_mod.cpp`.
+    - Archivo: `src/inverse_mod.cpp`.
 
 2.  Resolver utilizando *El pequeño teorema de Fermat*.
 

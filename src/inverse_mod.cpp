@@ -25,7 +25,6 @@ int main()
     a = 7241718167
     mod = 8175093213153651137
     */
-    string hola;
     ull a, mod;
     puts("Ingresa a y n para hallar x "
         "en ax = 1 (mod n)");
