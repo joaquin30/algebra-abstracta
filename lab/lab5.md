@@ -5,8 +5,8 @@
     ingresar el número $a$ y $n$, luego debe retornar el valor de $x$ (si es
     que existe). Crear un repositorio en GitHub (con `README.md`).
 
-    - Repositorio: <https://github.com/joaquin30/algebra-abstracta>.
-    - Archivo: `src/inverse_mod.cpp`.
+    -   Repositorio: <https://github.com/joaquin30/algebra-abstracta>.
+    -   Archivo: `src/inverse_mod.cpp`.
 
 2.  Resolver utilizando *El pequeño teorema de Fermat*.
 
