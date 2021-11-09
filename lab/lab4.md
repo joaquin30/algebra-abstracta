@@ -1,4 +1,4 @@
-% Laboratorio 5
+% Laboratorio 4
 
 1. (Permanente) Dado un número primo p, implementar un programa que permita calcular su raíz primitiva más pequeña (entre 1 y $p - 1$).
 
