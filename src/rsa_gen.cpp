@@ -59,25 +59,11 @@ int main() {
     auto key = rsa.gen();
     std::cout << "Clave RSA: n = " << key[0]
         << " e = " << key[1]
-        << " d = " << key[2] << "\n";
+        << " d = " << key[2] << "\nc\tm\n";
     int cnt = 0;
     std::vector<std::string> c1 {"m"}, c2 {"c"};
     for (int m = 0; m < key[0]; ++m) {
         int c = modExp(m, key[1], key[0]);
-        if (m == c) {
-            c1.push_back("**" + std::to_string(m) + "**");
-            c2.push_back("**" + std::to_string(c) + "**");
-        } else {
-            c1.push_back(std::to_string(m));
-            c2.push_back(std::to_string(c));
-        }
+        std::cout << m << "\t" << c << "\n";
     }
-
-    // output to csv
-    for (auto i : c1)
-        std::cout << i << ",";
-    std::cout << "\n";
-    for (auto i : c2)
-        std::cout << i << ",";
-    std::cout << "\n";
 }
