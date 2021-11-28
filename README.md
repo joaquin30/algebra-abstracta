@@ -15,7 +15,9 @@ Todos los códigos se encuentran en la carpeta `src`.
 
 -   `firmas_digitales.py`: Archivo que contiene los siguientes algoritmos:
 
-    -   `miller_rabin()`:
+    -   `miller_rabin()`: Basado en *el pequeño teorema de Fermat*, comprueba
+        si n es compuesto o *probablemente* primo usando valores aleatorios y
+        probando varias veces si cumple con el teorema.
 
         ```py
         def miller_rabin(n, s):
@@ -27,7 +29,11 @@ Todos los códigos se encuentran en la carpeta `src`.
             return False
         ```
 
-    -   `generate_prime():`
+    -   `generate_prime():` Genera un candidato a primo con la propiedad de ser
+        un número impar próximo a un primo verdadero. Simplemente probamos el
+        número con el test de `miller_rabin()`, si sale positivo aumentamos en
+        2 el número y volvemos a probar, y si sale falso ese es nuestro *muy
+        posible* primo.
 
         ```py
         def generate_prime(b):
@@ -38,7 +44,9 @@ Todos los códigos se encuentran en la carpeta `src`.
             return n
         ```
 
-    -   `rsa_key_generator():`
+    -   `rsa_key_generator():` Elegimos un E exponente de valores ya dados y
+        generamos 2 primos diferentes. Obtenemos N multiplicando los primos
+        y D obteniendo el inverso modular de E módulo φ(N).
 
         ```py
         def rsa_key_generator(b):

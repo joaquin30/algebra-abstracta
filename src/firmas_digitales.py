@@ -36,7 +36,7 @@ def generate_prime_candidate(b):
     return n
 
 def generate_prime(b):
-    s = 128 # hardcoded
+    s = 256 # hardcoded
     n = generate_prime_candidate(b)
     while miller_rabin(n, s):
         n += 2
